@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_notification/firebase_options.dart';
+import 'package:flutter_notification/services/notification_service.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+      // name: 'Notifications With Flutter',
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
   runApp(const MyApp());
 }
 
@@ -57,7 +65,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  void _incrementCounter() {
+  void _incrementCounter() async{
+    print(await NotificationService.getFcmToken());
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
