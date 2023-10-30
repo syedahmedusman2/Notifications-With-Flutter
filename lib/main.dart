@@ -27,7 +27,6 @@ class _MyAppState extends State<MyApp> {
     NotificationService.initializeLocalNotification();
     // Listining to notifications when app is opened
     FirebaseMessaging.onMessage.listen((RemoteMessage message) async{
-      print("Message AAYA");
       NotificationService.display(message);
 
     });

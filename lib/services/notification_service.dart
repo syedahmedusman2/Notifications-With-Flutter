@@ -5,7 +5,7 @@ class NotificationService {
   // fcm token
   static Future<String> getFcmToken() async {
     FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
-    FirebaseMessaging.instance.requestPermission();
+    _firebaseMessaging.requestPermission();
     String? fcmToken; // Change here
     await _firebaseMessaging.getToken().then((token) {
       fcmToken = token;
@@ -39,9 +39,7 @@ class NotificationService {
             presentSound: true,
             presentBadge: true,
             presentAlert: true,
-          )
-          // iOS: IosNotifi
-          );
+          ));
 
       await _notificationsPlugin.show(
         id,
